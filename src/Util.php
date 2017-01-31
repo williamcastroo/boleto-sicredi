@@ -351,22 +351,9 @@ final class Util
      */
     public static function nFloat($number, $decimals = 2, $showThousands = false)
     {
-        if (is_null($number) || empty(self::onlyNumbers($number))) {
-            return '';
-        }
-        $pontuacao = preg_replace('/[0-9]/', '', $number);
-        $locale = (substr($pontuacao, -1, 1) == ',') ? "pt-BR" : "en-US";
-        $formater = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
+        $valor = number_format($number / 100, $decimals, ',', ($showThousands ? '.' : ''));
 
-        if ($decimals === false) {
-            $decimals = 2;
-            preg_match_all('/[0-9][^0-9]([0-9]+)/', $number, $matches);
-            if (!empty($matches[1])) {
-                $decimals = strlen(rtrim($matches[1][0], 0));
-            }
-        }
-
-        return number_format($formater->parse($number, \NumberFormatter::TYPE_DOUBLE), $decimals, '.', ($showThousands) ? ',' : '');
+        return $valor;
     }
 
     /**
@@ -674,8 +661,9 @@ final class Util
      * Conversão para as datas no formato ddmmyyyy para ddmmyy
      * @param $data
      */
-    public static function convertDateToSingleYear($data){
-        $day =  substr($data, 0, 2);
+    public static function convertDateToSingleYear($data)
+    {
+        $day = substr($data, 0, 2);
         $month = substr($data, 2, 2);
         $year = substr($data, 6, 2);
         return $day . $month . $year;
