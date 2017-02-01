@@ -117,8 +117,6 @@ class Html implements HtmlContract
 
     public function gerarBoleto()
     {
-        $view = view();
-        $view->addNamespace('BoletoHtmlRender', realpath(__DIR__ . '/view/'));
-        return $view->make('BoletoHtmlRender::boleto', $this->dados)->render();
+        return $this->dados;
     }
 }
