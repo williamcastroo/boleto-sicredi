@@ -32,6 +32,7 @@ interface Boleto
     const COD_BANCO_BRADESCO = '237';
     const COD_BANCO_ITAU = '341';
     const COD_BANCO_HSBC = '399';
+    const COD_BANCO_SICREDI = '748';
 
     const STATUS_REGISTRO = 1;
     const STATUS_ALTERACAO = 2;
