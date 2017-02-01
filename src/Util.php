@@ -351,9 +351,7 @@ final class Util
      */
     public static function nFloat($number, $decimals = 2, $showThousands = false)
     {
-        $valor = number_format($number / 100, 2, ',', ($showThousands ? '.' : ''));
-
-        return $valor;
+        return $number;
     }
 
     /**
@@ -366,7 +364,8 @@ final class Util
      */
     public static function nReal($number, $decimals = 2, $symbol = true, $fixed = true)
     {
-        return \Geral::moneyFormat($number*100);
+        return str_replace('.','',\Geral::moneyFormat($number*100));
+
     }
 
     /**
