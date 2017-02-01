@@ -351,7 +351,7 @@ final class Util
      */
     public static function nFloat($number, $decimals = 2, $showThousands = false)
     {
-        $valor = number_format($number / 100, $decimals, ',', ($showThousands ? '.' : ''));
+        $valor = number_format($number / 100, 2, ',', ($showThousands ? '.' : ''));
 
         return $valor;
     }
@@ -366,7 +366,7 @@ final class Util
      */
     public static function nReal($number, $decimals = 2, $symbol = true, $fixed = true)
     {
-        $valor = number_format($number / 100, $decimals, ',');
+        $valor = number_format($number / 100, 2, ',');
 
         return $valor;
     }
