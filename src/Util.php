@@ -366,28 +366,9 @@ final class Util
      */
     public static function nReal($number, $decimals = 2, $symbol = true, $fixed = true)
     {
-        if (is_null($number) || empty(self::onlyNumbers($number))) {
-            return '';
-        }
-        $formater = new \NumberFormatter("pt-BR", \NumberFormatter::CURRENCY);
-        $formater->setAttribute(\NumberFormatter::MIN_FRACTION_DIGITS, ($fixed ? $decimals : 1));
-        if ($decimals === false) {
-            $decimals = 2;
-            preg_match_all('/[0-9][^0-9]([0-9]+)/', $number, $matches);
-            if (!empty($matches[1])) {
-                $decimals = strlen(rtrim($matches[1][0], 0));
-            }
-        }
-        $formater->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $decimals);
-        if (!$symbol) {
-            $pattern = preg_replace("/[¤]/", '', $formater->getPattern());
-            $formater->setPattern($pattern);
-        } else {
-            // ESPAÇO DEPOIS DO SIMBOLO
-            $pattern = str_replace("¤", "¤ ", $formater->getPattern());
-            $formater->setPattern($pattern);
-        }
-        return $formater->formatCurrency($number, $formater->getTextAttribute(\NumberFormatter::CURRENCY_CODE));
+        $valor = number_format($number / 100, $decimals, ',');
+
+        return $valor;
     }
 
     /**
