@@ -366,7 +366,7 @@ final class Util
      */
     public static function nReal($number, $decimals = 2, $symbol = true, $fixed = true)
     {
-        return \Geral::moneyFormat($number);
+        return \Geral::moneyFormat($number*100);
     }
 
     /**
